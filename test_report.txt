@@ -40,17 +40,18 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 PASS src/App.test.tsx
-  ✓ renders learn react link (64 ms)
+  ✓ renders learn react link (63 ms)
 
 ---------------------|---------|----------|---------|---------|-------------------
 File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ---------------------|---------|----------|---------|---------|-------------------
-All files            |   32.14 |       25 |   33.33 |   32.14 |                   
+All files            |   21.95 |       20 |   21.42 |    22.5 |                   
  src                 |       0 |        0 |       0 |       0 |                   
   index.tsx          |       0 |      100 |     100 |       0 | 8-21              
   reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
- src/components      |   53.33 |       50 |      40 |   53.33 |                   
+ src/components      |   28.57 |    33.33 |      20 |   29.62 |                   
   Footer.tsx         |   53.33 |       50 |      40 |   53.33 | 9,17-27,32        
+  OpenAIOverlay.tsx  |       0 |        0 |       0 |       0 | 20-75             
  src/views           |      50 |      100 |      50 |      50 |                   
   App.tsx            |     100 |      100 |     100 |     100 |                   
   Home.tsx           |       0 |      100 |       0 |       0 | 6                 
@@ -58,7 +59,7 @@ All files            |   32.14 |       25 |   33.33 |   32.14 |
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        2.823 s
+Time:        3.011 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
