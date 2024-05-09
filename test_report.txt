@@ -2,11 +2,441 @@
 > starter_helpi@0.1.0 test
 > react-scripts test --coverage
 
-No tests found, exiting with code 1
-Run with `--passWithNoTests` to exit with code 0
-In /home/runner/work/CISC275_finalProject/CISC275_finalProject
-  27 files checked.
-  testMatch: /home/runner/work/CISC275_finalProject/CISC275_finalProject/src/**/__tests__/**/*.{js,jsx,ts,tsx}, /home/runner/work/CISC275_finalProject/CISC275_finalProject/src/**/*.{spec,test}.{js,jsx,ts,tsx} - 0 matches
-  testPathIgnorePatterns: /node_modules/ - 27 matches
-  testRegex:  - 0 matches
-Pattern:  - 0 matches
+  console.error
+    Warning: Invalid DOM property `stroke-width`. Did you mean `strokeWidth`?
+        at svg
+        at div
+        at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
+        at div
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
+
+      4 |
+      5 | test('renders learn react link', () => {
+    > 6 |   render(<Home />);
+        |         ^
+      7 |   const linkElement = screen.getByText(/learn react/i);
+      8 |   expect(linkElement).toBeInTheDocument();
+      9 | });
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at validateProperty$1 (node_modules/react-dom/cjs/react-dom.development.js:3749:9)
+      at warnUnknownProperties (node_modules/react-dom/cjs/react-dom.development.js:3803:21)
+      at validateProperties$2 (node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:22193:17)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26593:16)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26568:5)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:63:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:159:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:246:10)
+      at Object.<anonymous> (src/App.test.tsx:6:9)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    Warning: Invalid DOM property `stroke-linecap`. Did you mean `strokeLinecap`?
+        at svg
+        at div
+        at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
+        at div
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
+
+      4 |
+      5 | test('renders learn react link', () => {
+    > 6 |   render(<Home />);
+        |         ^
+      7 |   const linkElement = screen.getByText(/learn react/i);
+      8 |   expect(linkElement).toBeInTheDocument();
+      9 | });
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at validateProperty$1 (node_modules/react-dom/cjs/react-dom.development.js:3749:9)
+      at warnUnknownProperties (node_modules/react-dom/cjs/react-dom.development.js:3803:21)
+      at validateProperties$2 (node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:22193:17)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26593:16)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26568:5)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:63:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:159:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:246:10)
+      at Object.<anonymous> (src/App.test.tsx:6:9)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+  console.error
+    Warning: Invalid DOM property `stroke-linejoin`. Did you mean `strokeLinejoin`?
+        at svg
+        at div
+        at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
+        at div
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
+
+      4 |
+      5 | test('renders learn react link', () => {
+    > 6 |   render(<Home />);
+        |         ^
+      7 |   const linkElement = screen.getByText(/learn react/i);
+      8 |   expect(linkElement).toBeInTheDocument();
+      9 | });
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at validateProperty$1 (node_modules/react-dom/cjs/react-dom.development.js:3749:9)
+      at warnUnknownProperties (node_modules/react-dom/cjs/react-dom.development.js:3803:21)
+      at validateProperties$2 (node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (node_modules/react-dom/cjs/react-dom.development.js:22193:17)
+      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26593:16)
+      at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26568:5)
+      at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:63:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:159:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:246:10)
+      at Object.<anonymous> (src/App.test.tsx:6:9)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+FAIL src/App.test.tsx
+  ✕ renders learn react link (120 ms)
+
+  ● renders learn react link
+
+    TestingLibraryElementError: Unable to find an element with the text: /learn react/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container"[39m
+            [33mstyle[39m=[32m"max-width: 100%; height: 100%; max-height: 100%;"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33mclass[39m=[32m"lucide lucide-lightbulb"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"140"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+              [33mstyle[39m=[32m"position: absolute; left: 155px; top: 50px; color: white;"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"140"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M9 18h6"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M10 22h4"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"row"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"col"[39m
+                [33mstyle[39m=[32m"max-width: 30%; text-align: center; position: relative; top: 200px; padding-left: 100px; padding-right: 100px;"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
+                  [33mstyle[39m=[32m"border-bottom: 2px solid black;"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mstyle[39m=[32m"font-size: 30px; vertical-align: center; font-weight: bold; padding: 10px;"[39m
+                  [36m>[39m
+                    [0mFindYourCareer[0m
+                  [36m</span>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"button btn1"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0mHome Page[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"button btn1"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0mBasic Quiz[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"button btn1"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0mDetailed Quiz[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"row"[39m
+                  [33mstyle[39m=[32m"border-bottom: 2px solid black;"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"button btn1"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0mResult[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"col"[39m
+                [33mstyle[39m=[32m"position: fixed; left: 30%; max-width: 70%;"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"page-content"[39m
+                  [33mstyle[39m=[32m"text-align: center;"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"text-center"[39m
+                    [33mstyle[39m=[32m"position: relative; top: 70px;"[39m
+                  [36m>[39m
+                    [36m<h1[39m
+                      [33mstyle[39m=[32m"font-size: 80px; color: black;"[39m
+                    [36m>[39m
+                      [0mFindYourCareer[0m
+                    [36m</h1>[39m
+                    [36m<h5>[39m
+                      [0mfor[0m
+                    [36m</h5>[39m
+                    [36m<h4>[39m
+                      [0mUNIVERSITY OF DELAWARE STUDENTS[0m
+                    [36m</h4>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"container"[39m
+                      [33mstyle[39m=[32m"position: relative; top: 70px;"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"text-center row"[39m
+                        [33mstyle[39m=[32m"column-gap: 20px;"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"col"[39m
+                          [33mstyle[39m=[32m"border: 10px solid background; background-color: burlywood; border-style: ridge;"[39m
+                        [36m>[39m
+                          [36m<button[39m
+                            [33mstyle[39m=[32m"vertical-align: middle; background: none; line-height: 1.2; font-weight: 500; margin-top: 0px; margin-bottom: 10px; font-size: 30px;"[39m
+                          [36m>[39m
+                            [36m<span>[39m
+                              [0mBasic Questions[0m
+                            [36m</span>[39m
+                          [36m</button>[39m
+                          [36m<h5[39m
+                            [33mstyle[39m=[32m"padding: 10px;"[39m
+                          [36m>[39m
+                            [0mDiscover Your Career Fit with Ease[0m
+                          [36m</h5>[39m
+                          [36m<h6[39m
+                            [33mstyle[39m=[32m"padding: 20px;"[39m
+                          [36m>[39m
+                            [0mOur basic questions career assessment is a quick and straightforward way to explore potential career paths based on your interests, skills, and personality. Answer a few simple questions, and get personalized career suggestions that align with your strengths and aspirations. Perfect for those seeking a quick overview of their career options.[0m
+                          [36m</h6>[39m
+                        [36m</div>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"col"[39m
+                          [33mstyle[39m=[32m"border: 10px solid black; background-color: burlywood; border-style: groove;"[39m
+                        [36m>[39m
+                          [36m<button[39m
+                            [33mstyle[39m=[32m"vertical-align: middle; background: none; line-height: 1.2; font-weight: 500; margin-top: 0px; margin-bottom: 10px; font-size: 30px;"[39m
+                          [36m>[39m
+                            [36m<span>[39m
+                              [0mDetailed Questions[0m
+                            [36m</span>[39m
+                          [36m</button>[39m
+                          [36m<h5[39m
+                            [33mstyle[39m=[32m"padding: 10px;"[39m
+                          [36m>[39m
+                            [0mDive Deep Into Your Career Potential[0m
+                          [36m</h5>[39m
+                          [36m<h6[39m
+                            [33mstyle[39m=[32m"padding: 20px;"[39m
+                          [36m>[39m
+                            [0mOur detailed questions career assessment provides an in-depth analysis of your interests, skills, personality traits, and values to uncover a comprehensive range of career possibilities. Receive personalized career recommendations, along with insights into educational paths, certifications, and resources to support your career journey. Ideal for those seeking a thorough exploration of their career options.[0m
+                          [36m</h6>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container"[39m
+            [33mstyle[39m=[32m"position: fixed; bottom: 0px; left: 0px; right: 0px; max-width: 100%; height: 90px; background-color: black; margin: 0px; text-align: left; padding: 20px;"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"row"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"col"[39m
+              [36m>[39m
+                [36m<form[39m
+                  [33mclass[39m=[32m""[39m
+                [36m>[39m
+                  [36m<label[39m
+                    [33mclass[39m=[32m"form-label"[39m
+                    [33mstyle[39m=[32m"color: white;"[39m
+                  [36m>[39m
+                    [0mOpenAI API Key:[0m
+                  [36m</label>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"align-items-center row"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"pe-0 col-md-3"[39m
+                    [36m>[39m
+                      [36m<input[39m
+                        [33mclass[39m=[32m"form-control form-control-sm"[39m
+                        [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                        [33mstyle[39m=[32m"width: 100%;"[39m
+                        [33mtype[39m=[32m"password"[39m
+                        [33mvalue[39m=[32m""[39m
+                      [36m/>[39m
+                    [36m</div>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"col-auto"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"align-items-center g-2 row"[39m
+                      [36m>[39m
+                        [36m<div[39m
+                          [33mclass[39m=[32m"col-auto"[39m
+                        [36m>[39m
+                          [36m<button[39m
+                            [33mclass[39m=[32m"btn btn-primary btn-sm"[39m
+                            [33mstyle[39m=[32m"width: 100%; height: 100%;"[39m
+                            [33mtype[39m=[32m"button"[39m
+                          [36m>[39m
+                            [0mSubmit[0m
+                          [36m</button>[39m
+                        [36m</div>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                [36m</form>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+       5 | test('renders learn react link', () => {
+       6 |   render(<Home />);
+    >  7 |   const linkElement = screen.getByText(/learn react/i);
+         |                              ^
+       8 |   expect(linkElement).toBeInTheDocument();
+       9 | });
+      10 |
+
+      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
+      at Object.<anonymous> (src/App.test.tsx:7:30)
+      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
+      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
+      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
+      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
+
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |    5.62 |    12.06 |     4.3 |    5.71 |                   
+ src                   |    8.33 |        0 |       0 |    8.33 |                   
+  AnswerContext.ts     |     100 |      100 |       0 |     100 |                   
+  index.tsx            |       0 |      100 |     100 |       0 | 7-19              
+  reportWebVitals.ts   |       0 |        0 |       0 |       0 | 3-10              
+ src/BasicQuestions    |    1.23 |        0 |       0 |    1.23 |                   
+  Q1.tsx               |       0 |      100 |       0 |       0 | 6-20              
+  Q2.tsx               |       0 |      100 |       0 |       0 | 6-20              
+  Q3.tsx               |       0 |      100 |       0 |       0 | 6-20              
+  Q4.tsx               |       0 |      100 |       0 |       0 | 6-20              
+  Q5.tsx               |       0 |      100 |       0 |       0 | 6-20              
+  Q6.tsx               |    9.09 |        0 |       0 |    9.09 | 8-34              
+  Q7.tsx               |       0 |      100 |       0 |       0 | 6-19              
+  Q8.tsx               |       0 |      100 |       0 |       0 | 6-18              
+ src/DetailQuestions   |    3.77 |        0 |       0 |    3.77 |                   
+  Q1.tsx               |       0 |        0 |       0 |       0 | 6-41              
+  Q2.tsx               |       0 |        0 |       0 |       0 | 6-17              
+  Q3.tsx               |   11.11 |        0 |       0 |   11.11 | 14-37             
+  Q4.tsx               |   11.11 |        0 |       0 |   11.11 | 14-35             
+  Q5.tsx               |       0 |        0 |       0 |       0 | 6-18              
+  Q6.tsx               |       0 |        0 |       0 |       0 | 6-18              
+  Q7.tsx               |       0 |        0 |       0 |       0 | 6-18              
+ src/components        |   16.27 |    16.66 |   11.76 |   17.94 |                   
+  Feedback.tsx         |       0 |      100 |       0 |       0 | 4                 
+  Footer.tsx           |   53.84 |       50 |      40 |   53.84 | 9,16-26           
+  OpenAIOverlay.tsx    |       0 |        0 |       0 |       0 | 24-166            
+  WebHeader.tsx        |       0 |        0 |       0 |       0 |                   
+ src/views             |       5 |    20.83 |   10.52 |       5 |                   
+  Basic_Questions.tsx  |       0 |        0 |       0 |       0 | 19-61             
+  Detail_Questions.tsx |       0 |        0 |       0 |       0 | 18-52             
+  Home.tsx             |      25 |     62.5 |   18.18 |      25 | 30-82,105-120     
+  Results.tsx          |       0 |      100 |       0 |       0 | 10-20             
+-----------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        4.074 s
+Ran all test suites.
