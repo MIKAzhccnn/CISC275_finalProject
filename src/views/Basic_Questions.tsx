@@ -10,7 +10,7 @@ import { Q8 } from "../BasicQuestions/Q8";
 import Complete from "../components/Feedback";
 import { OpenAIOverlay } from "../components/OpenAIOverlay";
 import { AnswerContext } from "../AnswerContext";
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import rightArrow from "../rightArrow.png";
 import leftArrow from "../leftArrow.png";
 import { Button } from "react-bootstrap";
@@ -51,6 +51,13 @@ function Basic_Questions(): JSX.Element {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
+
+  useLayoutEffect(() => {
+    // Your initialization logic here
+    setQuestionToEval("init");
+    // Example: Fetch initial data, initialize state, etc.
+    // fetchInitialData().then(data => setSomeState(data));
+  }, []); // Empty dependency array ensures this runs only once
 
   const progress = ((currentQuestion + 1) / totalQuestions) * 100;
 

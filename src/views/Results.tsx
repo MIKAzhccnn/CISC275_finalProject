@@ -1,7 +1,7 @@
 import "../Results.css";
 import { Card } from "../components/interfaces";
 
-function ResultsPage(): JSX.Element {
+export function ResultsPage(): JSX.Element {
   let Cards: Card[] = [
     {
       title: "Career",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -22,6 +22,7 @@ export function OpenAIOverlay({
   basicQuestionSet,
   currentQuestion,
   openAIKey,
+  results,
 }: OpenAIOverlayProps): JSX.Element {
   const openai = new OpenAI({
     apiKey: openAIKey,
@@ -58,7 +59,7 @@ export function OpenAIOverlay({
 
             RESPOND WITH "Excited to take a look at your responses!" IF YOU UNDERSTAND
 ...
-            ONCE YOU HAVE COLLECTED ALL SEVEN RESPONSES, PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE:
+            YOU WILL COLLECT SEVEN RESPONSES AND WILL PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE WHEN YOU ARE GIVEN THE KEYWORD "RUN REPORT":
 
             interface Card {
                 title: string
@@ -66,7 +67,7 @@ export function OpenAIOverlay({
                 image: string
             }
 
-            THE OUTPUT WILL BE COMPOSED OF AN ARRAY OF CARD WITH 3 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
+            THE OUTPUT WILL BE COMPOSED OF A TSX ARRAY OF CARD WITH 3 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
 
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
@@ -90,7 +91,7 @@ export function OpenAIOverlay({
 
             RESPOND WITH "Excited to take a look at your responses!" IF YOU UNDERSTAND
 ...
-            ONCE YOU HAVE COLLECTED ALL SEVEN RESPONSES, PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE:
+            YOU WILL COLLECT SEVEN RESPONSES AND WILL PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE WHEN YOU ARE GIVEN THE KEYWORD "RUN REPORT":
 
             interface Card {
                 title: string
@@ -98,7 +99,7 @@ export function OpenAIOverlay({
                 image: string
             }
 
-            THE OUTPUT WILL BE COMPOSED OF AN ARRAY OF CARD WITH 5 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
+            THE OUTPUT WILL BE COMPOSED OF A TSX ARRAY OF CARD WITH 5 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
 
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
@@ -110,25 +111,28 @@ export function OpenAIOverlay({
   }
 
   //Branch: Submit Prompt for either SQ or DQ, return text result
-  async function agent(userInput: string) {
-    setUserMessage((prevMessages) => [
-      ...prevMessages,
-      {
-        role: "user",
-        content: userInput,
-      },
-    ]);
-  }
+  const agent = (userInput: string): Message[] => {
+    const newMessage: Message = {
+      role: "user",
+      content: userInput,
+    };
 
-  useEffect(() => {
+    const refreshedArray = [...userMessage, newMessage];
+    setUserMessage(refreshedArray);
+
+    return refreshedArray;
+  };
+
+  useLayoutEffect(() => {
     if (
       currentQuestion !== userMessage[userMessage.length - 1].content &&
       currentQuestion
     ) {
-      async function processLatest(): Promise<string> {
+      console.log(currentQuestion);
+      async function processLatest(latestSet: Message[]): Promise<string> {
         const response = await openai.chat.completions.create({
           model: "gpt-4",
-          messages: userMessage,
+          messages: latestSet,
         });
         const content = response.choices[0].message.content;
         if (content === null) {
@@ -137,13 +141,18 @@ export function OpenAIOverlay({
         return content;
       }
 
-      async function exec() {
-        await agent(currentQuestion);
-        const gptRetVal = await processLatest();
+      async function exec(latestSet: Message[]) {
+        const gptRetVal = await processLatest(latestSet);
         setResponses((prevResponses) => [...prevResponses, gptRetVal]);
       }
-      exec();
-      console.log(userMessage);
+
+      if (currentQuestion === "init") {
+        exec(userMessage);
+      } else {
+        let latestSet = agent(currentQuestion);
+        console.log("inner, common");
+        exec(latestSet);
+      }
     }
   }, [currentQuestion]); // eslint-disable-line react-hooks/exhaustive-deps
 
