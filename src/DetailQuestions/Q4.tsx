@@ -26,7 +26,7 @@ export function Q4(): JSX.Element {
     <div>
             <br></br>
             <br></br>
-            Which of the following skills do you possess and enjoy using?
+            <h3>Which of the following skills do you possess and enjoy using?</h3>
             <br></br>
             <br></br>
             <br></br>
