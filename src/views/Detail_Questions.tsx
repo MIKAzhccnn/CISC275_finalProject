@@ -76,15 +76,17 @@ function Detail_Questions(): JSX.Element {
 
           <div className="slider">{questions[currentQuestion]}</div>
 
-          <button
-            style={{ backgroundColor: "transparent" }}
-            className="right-button"
-            id="controls"
-            onClick={handleNextClick}
-            disabled={currentQuestion === totalQuestions - 1}
-          >
-            <img sizes="sm" src={rightArrow} alt="Next" />
-          </button>
+          {currentQuestion !== totalQuestions - 1 && (
+            <button
+              style={{ backgroundColor: "transparent" }}
+              className="right-button"
+              id="controls"
+              onClick={handleNextClick}
+              disabled={currentQuestion === totalQuestions - 1}
+            >
+              <img sizes="sm" src={rightArrow} alt="Next" />
+            </button>
+          )}
           <br></br>
         </div>
 

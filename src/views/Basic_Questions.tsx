@@ -21,6 +21,7 @@ function Basic_Questions(): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionToEval, setQuestionToEval] = useState("");
   const [showFireworks, setShowFireworks] = useState(false);
+  const [runReport, setRunReport] = useState(false);
   const [results, setResults] = useState<Card[]>([]);
   const questions = [
     <Q1 />,
@@ -41,7 +42,7 @@ function Basic_Questions(): JSX.Element {
     if (currentQuestion < totalQuestions - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setQuestionToEval("RUN REPORT");
+      setRunReport(true);
       setShowFireworks(true);
     }
   };
@@ -56,9 +57,14 @@ function Basic_Questions(): JSX.Element {
   useLayoutEffect(() => {
     // Your initialization logic here
     setQuestionToEval("init");
-    // Example: Fetch initial data, initialize state, etc.
-    // fetchInitialData().then(data => setSomeState(data));
   }, []); // Empty dependency array ensures this runs only once
+
+  useLayoutEffect(() => {
+    // Your initialization logic here
+    if (runReport) {
+      setQuestionToEval("RUN REPORT");
+    }
+  }, [runReport]); // Empty dependency array ensures this runs only once
 
   const progress = ((currentQuestion + 1) / totalQuestions) * 100;
 
@@ -93,15 +99,17 @@ function Basic_Questions(): JSX.Element {
 
           <div className="slider">{questions[currentQuestion]}</div>
 
-          <button
-            style={{ backgroundColor: "transparent" }}
-            className="right-button"
-            id="controls"
-            onClick={handleNextClick}
-            disabled={currentQuestion === totalQuestions - 1}
-          >
-            <img sizes="sm" src={rightArrow} alt="Next" />
-          </button>
+          {currentQuestion !== totalQuestions - 1 && (
+            <button
+              style={{ backgroundColor: "transparent" }}
+              className="right-button"
+              id="controls"
+              onClick={handleNextClick}
+              disabled={currentQuestion === totalQuestions - 1}
+            >
+              <img sizes="sm" src={rightArrow} alt="Next" />
+            </button>
+          )}
         </div>
 
         <br></br>
