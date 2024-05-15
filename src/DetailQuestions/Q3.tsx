@@ -20,7 +20,7 @@ export function Q3(): JSX.Element {
             <br></br>
             <br></br>
             <h3>
-              Which of the following work environments would you thrive in the most?
+              What kind of work environments would you thrive in the most?
             </h3>
             <br></br>
             <br></br>
