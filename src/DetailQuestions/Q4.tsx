@@ -1,24 +1,29 @@
-import React, { useState, useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
-import { AnswerContext } from "../AnswerContext";
+import { AnswerContext } from "../AnswerContext"; // Verify the correct import path
 
 const skills = [
-    "attention to detail",
-    "creativity",
-    "analytical thinking",
-    "leadership",
-    "communication"
+  "attention to detail",
+  "creativity",
+  "analytical thinking",
+  "leadership",
+  "communication",
 ];
 
-export function Q4():JSX.Element {
-    const [selectSkill, setSelectSkill] = useState<string | null>(null);
-    const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-    function updateSkill(event: React.ChangeEvent<HTMLInputElement>){
-        setSelectSkill(event.target.value)
-        
-    }
-    return (
-        <div>
+export function Q4(): JSX.Element {
+  const { userAnswers, setUserAnswers } = useContext(AnswerContext);
+  const [selectSkill, setSelectSkill] = useState<string>(userAnswers[4] || ""); // Adjusted to use string only, defaulting to an empty string
+
+  useEffect(() => {
+    setUserAnswers([...userAnswers.slice(0, 4), selectSkill]);
+  }, [selectSkill, setUserAnswers, userAnswers]);
+
+  function handleSkillChange(skill: string) {
+    setSelectSkill(skill);
+  }
+
+  return (
+    <div>
             <br></br>
             <br></br>
             Which of the following skills do you possess and enjoy using?
@@ -32,9 +37,9 @@ export function Q4():JSX.Element {
                     label={skill}
                     name="skill-button"
                     checked={selectSkill === skill}
-                    onChange={()=>setSelectSkill(skill)}
-                />
-            ))}
-        </div>
-    );
+                    onChange={() => handleSkillChange(skill)}
+        />
+      ))}
+    </div>
+  );
 }
