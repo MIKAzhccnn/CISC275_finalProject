@@ -41,7 +41,7 @@ export function Q1(): JSX.Element {
                     label={reason}
                     name="reason-button"
                     checked={selectReason === reason}
-                    onChange={()=>setSelectReason(reason)}
+                    onChange={() => updateSelectReason(reason)}
                 />
             ))}
             <br></br>
