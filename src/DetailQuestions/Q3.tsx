@@ -37,7 +37,7 @@ export function Q3(): JSX.Element {
                     label={place}
                     name="place-button"
                     checked={selectPlace === place}
-                    onChange={()=>setSelectPlace(place)}
+                    onChange={() => handlePlaceChange(place)}
                 />
             ))}
         </div>
