@@ -2,44 +2,36 @@ import { useContext, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { AnswerContext } from "../AnswerContext"; // Verify the correct import path
 
-const skills = [
-  "attention to detail",
-  "creativity",
-  "analytical thinking",
-  "leadership",
-  "communication",
-];
-
 export function Q4(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [selectSkill, setSelectSkill] = useState<string>(userAnswers[4] || ""); // Adjusted to use string only, defaulting to an empty string
+  const [userInfo, setUserInfo] = useState<string>(userAnswers[4] || ""); // Adjusted to use string only, defaulting to an empty string
 
   useEffect(() => {
-    setUserAnswers([...userAnswers.slice(0, 4), selectSkill]);
-  }, [selectSkill, setUserAnswers, userAnswers]);
+    setUserAnswers([...userAnswers.slice(0, 4), userInfo]);
+  }, [userInfo, setUserAnswers, userAnswers]);
 
-  function handleSkillChange(skill: string) {
-    setSelectSkill(skill);
+  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setUserInfo(event.target.value);
   }
 
   return (
     <div>
+      <Form.Group controlId="preference">
             <br></br>
             <br></br>
-            <h3>Which of the following skills do you possess and enjoy using?</h3>
+            <h3>
+              What skills do you possess and enjoy using?
+            </h3>
             <br></br>
             <br></br>
             <br></br>
-            {skills.map((skill) => (
-                <Form.Check
-                    inline
-                    type="checkbox"
-                    label={skill}
-                    name="skill-button"
-                    checked={selectSkill === skill}
-                    onChange={() => handleSkillChange(skill)}
-        />
-      ))}
+            <Form.Control
+              as="textarea"
+              rows={5}
+              value={userInfo}
+              onChange={updateUserInfo}
+            />
+      </Form.Group>
     </div>
   );
 }
