@@ -14,11 +14,13 @@ import { useState } from "react";
 import rightArrow from "../rightArrow.png";
 import leftArrow from "../leftArrow.png";
 import { Button } from "react-bootstrap";
+import { Card } from "../components/interfaces";
 
 function Basic_Questions(): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionToEval, setQuestionToEval] = useState("");
   const [showFireworks, setShowFireworks] = useState(false);
+  const [results, setResults] = useState<Card[]>([]);
   const questions = [
     <Q1 />,
     <Q2 />,
@@ -56,6 +58,14 @@ function Basic_Questions(): JSX.Element {
   const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
   if (prevKey !== null) {
     keyData = JSON.parse(prevKey);
+  }
+
+  const handleResults = (data: Card[]) => {
+    setResults(data);
+  };
+
+  if (showResults) {
+    return <Results />;
   }
 
   return (
@@ -113,6 +123,7 @@ function Basic_Questions(): JSX.Element {
           basicQuestionSet={true}
           currentQuestion={questionToEval}
           openAIKey={keyData}
+          results={handleResults}
         ></OpenAIOverlay>
 
         <br></br>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { Card } from "../components/interfaces";
 
 import OpenAI from "openai";
 
@@ -14,6 +15,7 @@ interface OpenAIOverlayProps {
   basicQuestionSet: boolean;
   currentQuestion: string;
   openAIKey: string;
+  results: (data: Card[]) => void;
 }
 
 export function OpenAIOverlay({
@@ -134,7 +136,6 @@ export function OpenAIOverlay({
         }
         return content;
       }
-      console.log("in here");
 
       async function exec() {
         await agent(currentQuestion);
