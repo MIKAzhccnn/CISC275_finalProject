@@ -1,7 +1,7 @@
 import "../Results.css";
 import { Card } from "../components/interfaces";
 
-function Results_Page(): JSX.Element {
+function ResultsPage(): JSX.Element {
   let Cards: Card[] = [
     {
       title: "Career",
@@ -60,4 +60,4 @@ function Results_Page(): JSX.Element {
   );
 }
 
-export default Results_Page;
+export default ResultsPage;

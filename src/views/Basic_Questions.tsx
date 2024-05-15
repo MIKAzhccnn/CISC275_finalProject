@@ -15,6 +15,7 @@ import rightArrow from "../rightArrow.png";
 import leftArrow from "../leftArrow.png";
 import { Button } from "react-bootstrap";
 import { Card } from "../components/interfaces";
+import { ResultsPage } from "./Results";
 
 function Basic_Questions(): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -64,8 +65,8 @@ function Basic_Questions(): JSX.Element {
     setResults(data);
   };
 
-  if (showResults) {
-    return <Results />;
+  if (results.length > 0) {
+    return <ResultsPage />;
   }
 
   return (
