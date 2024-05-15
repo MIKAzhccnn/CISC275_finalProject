@@ -19,7 +19,7 @@ export function Q2(): JSX.Element {
             <Form.Group controlId="work-schedule">
             <br></br>
             
-            <Form.Label>What is your ideal working schedule?</Form.Label>
+            <h3>What is your ideal working schedule?</h3>
             <br></br>
             <br></br>
             <br></br>
