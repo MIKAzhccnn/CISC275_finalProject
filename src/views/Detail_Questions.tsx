@@ -57,7 +57,7 @@ function Detail_Questions(): JSX.Element {
   };
 
   if (results.length > 0) {
-    return <ResultsPage />;
+    return <ResultsPage cards={results} />;
   }
 
   return (

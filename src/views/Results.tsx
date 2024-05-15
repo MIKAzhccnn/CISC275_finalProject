@@ -1,24 +1,10 @@
 import "../Results.css";
 import { Card } from "../components/interfaces";
 
-export function ResultsPage(): JSX.Element {
-  let Cards: Card[] = [
-    {
-      title: "Career",
-      info: "a",
-      image: "https://picsum.photos/id/237/536/354",
-    },
-    {
-      title: "Career2",
-      info: "a",
-      image: "https://picsum.photos/id/237/536/354",
-    },
-    {
-      title: "Career3",
-      info: "a",
-      image: "https://picsum.photos/id/237/536/354",
-    },
-  ];
+interface ResultsPageProps {
+  cards: Card[];
+}
+export function ResultsPage({ cards }: ResultsPageProps): JSX.Element {
   //above is an example
   return (
     <div className="containerx" style={{ position: "fixed", top: "200px" }}>
@@ -30,7 +16,7 @@ export function ResultsPage(): JSX.Element {
           Recommended Careers
         </h1>
       </div>
-      {Cards.map((card: Card) => (
+      {cards.map((card: Card) => (
         <div className="card">
           <img className="background" src={card.image} alt="" />
           <div className="card-content">

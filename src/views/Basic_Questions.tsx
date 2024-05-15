@@ -41,6 +41,7 @@ function Basic_Questions(): JSX.Element {
     if (currentQuestion < totalQuestions - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
+      setQuestionToEval("RUN REPORT");
       setShowFireworks(true);
     }
   };
@@ -73,7 +74,7 @@ function Basic_Questions(): JSX.Element {
   };
 
   if (results.length > 0) {
-    return <ResultsPage />;
+    return <ResultsPage cards={results} />;
   }
 
   return (
@@ -101,7 +102,6 @@ function Basic_Questions(): JSX.Element {
           >
             <img sizes="sm" src={rightArrow} alt="Next" />
           </button>
-          <br></br>
         </div>
 
         <br></br>

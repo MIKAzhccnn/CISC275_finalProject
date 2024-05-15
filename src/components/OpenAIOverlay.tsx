@@ -40,6 +40,25 @@ export function OpenAIOverlay({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //Attribution: Implemented with ChatGPT
+  const parseCardString = (str: string): Card[] => {
+    // Remove newline characters
+    let validJsonString = str.replace(/\n/g, "");
+
+    // Replace single quotes with double quotes
+    validJsonString = validJsonString.replace(/'/g, '"');
+
+    // Ensure keys are quoted
+    validJsonString = validJsonString.replace(/([{,]\s*)(\w+)\s*:/g, '$1"$2":');
+
+    try {
+      return JSON.parse(validJsonString);
+    } catch (error) {
+      console.error("Error parsing JSON string:", error);
+      return [];
+    }
+  };
+
   //Set initial, Base Message
   function returnBaseMessage(qSetType: boolean): Message[] {
     if (qSetType) {
@@ -72,6 +91,8 @@ export function OpenAIOverlay({
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
             [{title: 'Career', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career2', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career3', info: 'a', image: 'https://picsum.photos/id/237/536/354'}]
+
+            ONLY HAVE THE ARRAY IN YOUR OUTPUT AFTER "RUN REPORT", NOTHING ELSE
             `,
         },
       ];
@@ -104,6 +125,8 @@ export function OpenAIOverlay({
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
             [{title: 'Career', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career2', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career3', info: 'a', image: 'https://picsum.photos/id/237/536/354'}]
+
+             ONLY HAVE THE ARRAY IN YOUR OUTPUT AFTER "RUN REPORT", NOTHING ELSE
             `,
         },
       ];
@@ -143,7 +166,12 @@ export function OpenAIOverlay({
 
       async function exec(latestSet: Message[]) {
         const gptRetVal = await processLatest(latestSet);
-        setResponses((prevResponses) => [...prevResponses, gptRetVal]);
+        if (currentQuestion !== "RUN REPORT") {
+          setResponses((prevResponses) => [...prevResponses, gptRetVal]);
+        } else {
+          let parsedCard = parseCardString(gptRetVal);
+          results(parsedCard);
+        }
       }
 
       if (currentQuestion === "init") {
