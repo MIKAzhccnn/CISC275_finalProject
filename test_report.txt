@@ -126,7 +126,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (123 ms)
+  ✕ renders learn react link (113 ms)
 
   ● renders learn react link
 
@@ -402,7 +402,7 @@ go away.[0m
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |    5.28 |    12.06 |    4.39 |    5.37 |                   
+All files              |    4.93 |    12.06 |    4.49 |    5.02 |                   
  src                   |    8.33 |        0 |       0 |    8.33 |                   
   AnswerContext.ts     |     100 |      100 |       0 |     100 |                   
   index.tsx            |       0 |      100 |     100 |       0 | 7-19              
@@ -416,11 +416,11 @@ All files              |    5.28 |    12.06 |    4.39 |    5.37 |
   Q6.tsx               |    9.09 |        0 |       0 |    9.09 | 8-34              
   Q7.tsx               |       0 |      100 |       0 |       0 | 6-19              
   Q8.tsx               |       0 |      100 |       0 |       0 | 6-18              
- src/DetailQuestions   |       2 |        0 |       0 |       2 |                   
+ src/DetailQuestions   |       0 |        0 |       0 |       0 |                   
   Q1.tsx               |       0 |        0 |       0 |       0 | 6-44              
   Q2.tsx               |       0 |        0 |       0 |       0 | 6-17              
   Q3.tsx               |       0 |        0 |       0 |       0 | 6-17              
-  Q4.tsx               |   11.11 |        0 |       0 |   11.11 | 14-40             
+  Q4.tsx               |       0 |        0 |       0 |       0 | 6-17              
   Q5.tsx               |       0 |        0 |       0 |       0 | 6-18              
   Q6.tsx               |       0 |        0 |       0 |       0 | 6-18              
   Q7.tsx               |       0 |        0 |       0 |       0 | 6-18              
