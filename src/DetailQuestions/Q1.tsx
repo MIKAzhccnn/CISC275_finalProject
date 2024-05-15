@@ -1,31 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { AnswerContext } from "../AnswerContext";
+import { AnswerContext } from "../AnswerContext"; // Make sure the path is correct
 
-const reasons = [
+export function Q1(): JSX.Element {
+  const { userAnswers, setUserAnswers } = useContext(AnswerContext);
+  const reasons = [
     "Salary",
     "Work-life balance",
     "Helping others",
     "Others Reasons",
-];
+  ];
 
-export function Q1():JSX.Element {
-    const [selectReason, setSelectReason] = useState<string | null>(null);
-    const [userInfo, setUserInfo] = useState<string>("");
-    const { userAnswers, setUserAnswers } = useContext(AnswerContext);
+  const [selectReason, setSelectReason] = useState<string>(
+    userAnswers[0] || "",
+  );
+  const [userInfo, setUserInfo] = useState<string>(userAnswers[1] || "");
 
-    function updateReson(event: React.ChangeEvent<HTMLInputElement>){
-        setSelectReason(event.target.value)
+  useEffect(() => {
+    setUserAnswers([selectReason, userInfo]);
+  }, [selectReason, userInfo, setUserAnswers]);
 
-    }
+  function updateSelectReason(reason: string) {
+    setSelectReason(reason);
+  }
 
-    function updateUserInfo(event: React.ChangeEvent<HTMLInputElement>) {
-        setUserInfo(event.target.value);
-        
-    }
+  function updateUserInfo(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserInfo(event.target.value);
+  }
 
-    return (
-        <div>
+  return (
+    <div>
             What is most important to you in a job?
             <br></br>
             <br></br>
@@ -53,5 +57,5 @@ export function Q1():JSX.Element {
                         onChange={updateUserInfo}
                     />
         </div>
-    );
+  );
 }
