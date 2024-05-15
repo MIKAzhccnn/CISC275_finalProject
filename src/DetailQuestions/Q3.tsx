@@ -2,44 +2,36 @@ import { useContext, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { AnswerContext } from "../AnswerContext"; // Make sure the path is correct
 
-const places = [
-  "Corporate Office",
-  "Startup",
-  "Non-profit Organization",
-  "Government Agency",
-  "Bank",
-];
-
 export function Q3(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [selectPlace, setSelectPlace] = useState<string>(userAnswers[3] || ""); // Adjusted to default to an empty string
+  const [userInfo, setUserInfo] = useState<string>(userAnswers[3] || ""); // Adjusted to default to an empty string
 
   useEffect(() => {
-    setUserAnswers([...userAnswers.slice(0, 3), selectPlace]);
-  }, [selectPlace, setUserAnswers, userAnswers]);
+    setUserAnswers([...userAnswers.slice(0, 3), userInfo]);
+  }, [userInfo, setUserAnswers, userAnswers]);
 
-  function handlePlaceChange(place: string) {
-    setSelectPlace(place);
+  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setUserInfo(event.target.value);
   }
 
   return (
     <div>
+      <Form.Group controlId="preference">
             <br></br>
             <br></br>
-            <h3>Which of the following work environments would you thrive in the most?</h3>
+            <h3>
+              Which of the following work environments would you thrive in the most?
+            </h3>
             <br></br>
             <br></br>
             <br></br>
-            {places.map((place) => (
-                <Form.Check
-                    inline
-                    type="checkbox"
-                    label={place}
-                    name="place-button"
-                    checked={selectPlace === place}
-                    onChange={() => handlePlaceChange(place)}
-                />
-            ))}
+            <Form.Control
+              as="textarea"
+              rows={5}
+              value={userInfo}
+              onChange={updateUserInfo}
+            />
+        </Form.Group>
         </div>
   );
 }
