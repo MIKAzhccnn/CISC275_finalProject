@@ -33,7 +33,6 @@ export function Q1(): JSX.Element {
             <h3>What is most important to you in a job?</h3>
             <br></br>
             <br></br>
-            <br></br>
             {reasons.map((reason) => (
                 <Form.Check
                     inline
@@ -46,10 +45,7 @@ export function Q1(): JSX.Element {
             ))}
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
             if "Others" OR have anything to share, please indicate here:
-            <br></br>
             <br></br>
             <Form.Control
                         type="textbox"
