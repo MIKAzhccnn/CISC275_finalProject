@@ -4,30 +4,30 @@ import { AnswerContext } from "../AnswerContext"; // Verify the correct import p
 
 export function Q4(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [userInfo, setUserInfo] = useState<string>(userAnswers[4] || ""); // Adjusted to use string only, defaulting to an empty string
+  const [data, setData] = useState<string>(userAnswers[3] || "");
 
   useEffect(() => {
-    setUserAnswers([...userAnswers.slice(0, 4), userInfo]);
-  }, [userInfo, setUserAnswers, userAnswers]);
+    setUserAnswers((prevAnswers: string[]) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[3] = data;
+      return updatedAnswers;
+    });
+  }, [data, setUserAnswers]);
 
-  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setUserInfo(event.target.value);
+  function updateData(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setData(event.target.value);
   }
 
   return (
     <div>
       <Form.Group controlId="preference">
-            <br></br>
-            <h3>
-              What skills do you possess and enjoy using?
-            </h3>
-            <br></br>
-            <Form.Control
-              as="textarea"
-              rows={5}
-              value={userInfo}
-              onChange={updateUserInfo}
-            />
+        <h3 className="py-5">What skills do you possess and enjoy using?</h3>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          value={data}
+          onChange={updateData}
+        />
       </Form.Group>
     </div>
   );

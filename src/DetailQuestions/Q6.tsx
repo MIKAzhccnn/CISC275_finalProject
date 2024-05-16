@@ -4,29 +4,32 @@ import { AnswerContext } from "../AnswerContext"; // Ensure the correct import p
 
 export function Q6(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [userInfo, setUserInfo] = useState<string>(userAnswers[6] || ""); // Initialize with the value from context
+  const [data, setData] = useState<string>(userAnswers[5] || "");
 
   useEffect(() => {
-    // Update context when userInfo changes
-    setUserAnswers([...userAnswers.slice(0, 6), userInfo]);
-  }, [userInfo, setUserAnswers, userAnswers]);
+    setUserAnswers((prevAnswers: string[]) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[5] = data;
+      return updatedAnswers;
+    });
+  }, [data, setUserAnswers]);
 
-  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setUserInfo(event.target.value);
+  function updateData(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setData(event.target.value);
   }
 
   return (
     <div>
       <Form.Group controlId="preference">
-        <h3>
+        <h3 className="py-5">
           Are you comfortable working in a fast-paced, high-stress environment
           or do you prefer a slower pace?
         </h3>
         <Form.Control
           as="textarea"
           rows={5}
-          value={userInfo}
-          onChange={updateUserInfo}
+          value={data}
+          onChange={updateData}
         />
       </Form.Group>
     </div>

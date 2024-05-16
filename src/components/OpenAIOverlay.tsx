@@ -1,8 +1,33 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { Card } from "../components/interfaces";
+import JSON5 from "json5";
+
 import OpenAI from "openai";
+
+import { createApi } from "unsplash-js";
+
+const unsplash = createApi({
+  accessKey: "dT7cw2riuGM_E8hDOnZ4Xr2z_MgjupXfYgfRQbVDkhQ",
+});
+
+const fetchImage = async (query: string): Promise<string | undefined> => {
+  try {
+    const result = await unsplash.search.getPhotos({
+      query,
+      page: 1,
+      perPage: 1,
+      orientation: "portrait",
+    });
+    console.log(result.response?.results[0]);
+    return result.response?.results[0].urls.regular;
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    return "";
+  }
+};
 
 interface Message {
   role: "system" | "user" | "assistant";
@@ -13,12 +38,14 @@ interface OpenAIOverlayProps {
   basicQuestionSet: boolean;
   currentQuestion: string;
   openAIKey: string;
+  results: (data: Card[]) => void;
 }
 
 export function OpenAIOverlay({
   basicQuestionSet,
   currentQuestion,
   openAIKey,
+  results,
 }: OpenAIOverlayProps): JSX.Element {
   const openai = new OpenAI({
     apiKey: openAIKey,
@@ -35,6 +62,31 @@ export function OpenAIOverlay({
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //Attribution: Implemented with ChatGPT
+  const parseCardString = (str: string): Card[] => {
+    try {
+      return JSON5.parse(str);
+    } catch (error) {
+      console.error("Error parsing JSON string:", error);
+      return [];
+    }
+  };
+
+  async function hydrateParse(entryResult: Card[]): Promise<Card[]> {
+    const newCards = await Promise.all(
+      entryResult.map(async (card) => {
+        if (card.image === "") {
+          const newImage = await fetchImage(card.title);
+          console.log(newImage);
+          return { ...card, image: newImage };
+        }
+        return card;
+      }),
+    );
+
+    return newCards;
+  }
 
   //Set initial, Base Message
   function returnBaseMessage(qSetType: boolean): Message[] {
@@ -55,7 +107,7 @@ export function OpenAIOverlay({
 
             RESPOND WITH "Excited to take a look at your responses!" IF YOU UNDERSTAND
 ...
-            ONCE YOU HAVE COLLECTED ALL SEVEN RESPONSES, PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE:
+            YOU WILL COLLECT SEVEN RESPONSES AND WILL PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE WHEN YOU ARE GIVEN THE KEYWORD "RUN REPORT":
 
             interface Card {
                 title: string
@@ -63,11 +115,13 @@ export function OpenAIOverlay({
                 image: string
             }
 
-            THE OUTPUT WILL BE COMPOSED OF AN ARRAY OF CARD WITH 3 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
+            THE OUTPUT WILL BE COMPOSED OF A TSX ARRAY OF CARD WITH 3 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
 
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
-            [{title: 'Career', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career2', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career3', info: 'a', image: 'https://picsum.photos/id/237/536/354'}]
+            [{title: "Career", info: "a", image: ""}, {title: "Career2", info: "a", image: ""}, {title: "Career3", info: "a", image: ""}]
+
+            ONLY HAVE THE ARRAY IN YOUR OUTPUT AFTER "RUN REPORT", NOTHING ELSE
             `,
         },
       ];
@@ -87,7 +141,7 @@ export function OpenAIOverlay({
 
             RESPOND WITH "Excited to take a look at your responses!" IF YOU UNDERSTAND
 ...
-            ONCE YOU HAVE COLLECTED ALL SEVEN RESPONSES, PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE:
+            YOU WILL COLLECT SEVEN RESPONSES AND WILL PROVIDE AN OUTPUT THAT IS AN ARRAY OF THE FOLLOWING OBJECT TYPE WHEN YOU ARE GIVEN THE KEYWORD "RUN REPORT":
 
             interface Card {
                 title: string
@@ -95,11 +149,13 @@ export function OpenAIOverlay({
                 image: string
             }
 
-            THE OUTPUT WILL BE COMPOSED OF AN ARRAY OF CARD WITH 5 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
+            THE OUTPUT WILL BE COMPOSED OF A TSX ARRAY OF CARD WITH FIVE POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
 
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
-            [{title: 'Career', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career2', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career3', info: 'a', image: 'https://picsum.photos/id/237/536/354'}]
+            [{title: "Career", info: "a", image: ""}, {title: "Career2", info: "a", image: ""}, {title: "Career3", info: "a", image: ""}, {title: "Career4", info: "a", image: ""}, {title: "Career5", info: "a", image: ""}]
+
+             ONLY HAVE THE ARRAY IN YOUR OUTPUT AFTER "RUN REPORT", NOTHING ELSE
             `,
         },
       ];
@@ -107,25 +163,28 @@ export function OpenAIOverlay({
   }
 
   //Branch: Submit Prompt for either SQ or DQ, return text result
-  async function agent(userInput: string) {
-    setUserMessage((prevMessages) => [
-      ...prevMessages,
-      {
-        role: "user",
-        content: userInput,
-      },
-    ]);
-  }
+  const agent = (userInput: string): Message[] => {
+    const newMessage: Message = {
+      role: "user",
+      content: userInput,
+    };
 
-  useEffect(() => {
+    const refreshedArray = [...userMessage, newMessage];
+    setUserMessage(refreshedArray);
+
+    return refreshedArray;
+  };
+
+  useLayoutEffect(() => {
     if (
       currentQuestion !== userMessage[userMessage.length - 1].content &&
       currentQuestion
     ) {
-      async function processLatest(): Promise<string> {
+      console.log(currentQuestion);
+      async function processLatest(latestSet: Message[]): Promise<string> {
         const response = await openai.chat.completions.create({
           model: "gpt-4",
-          messages: userMessage,
+          messages: latestSet,
         });
         const content = response.choices[0].message.content;
         if (content === null) {
@@ -133,25 +192,91 @@ export function OpenAIOverlay({
         }
         return content;
       }
-      console.log("in here");
 
-      async function exec() {
-        await agent(currentQuestion);
-        const gptRetVal = await processLatest();
-        setResponses((prevResponses) => [...prevResponses, gptRetVal]);
+      async function exec(latestSet: Message[]) {
+        const gptRetVal = await processLatest(latestSet);
+        if (currentQuestion !== "RUN REPORT") {
+          setResponses((prevResponses) => [...prevResponses, gptRetVal]);
+        } else {
+          let parsedCard = parseCardString(gptRetVal);
+          let hydratedCard = await hydrateParse(parsedCard);
+          console.log(hydratedCard);
+          results(hydratedCard);
+        }
       }
-      exec();
-      console.log(userMessage);
+
+      if (currentQuestion === "init") {
+        exec(userMessage);
+      } else {
+        let latestSet = agent(currentQuestion);
+        console.log("inner, common");
+        exec(latestSet);
+      }
     }
   }, [currentQuestion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // run through initialization
   // show overlay with report result
 
+  const buttonContainerStyle: React.CSSProperties = {
+    position: "relative",
+    display: "inline-block",
+  };
+
+  const pulsatingDotContainerStyle: React.CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    marginRight: ".75em", // Add some margin space between dot and text
+    paddingBottom: "0.25em",
+  };
+
+  const pulsatingDotStyle: React.CSSProperties = {
+    width: "9px",
+    height: "9px",
+    backgroundColor: "#00BEFF",
+    borderRadius: "50%",
+    position: "relative",
+    animation:
+      "pulseDot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite",
+  };
+
+  const keyframesStyle = `
+    @keyframes pulseRing {
+      0% { transform: scale(.1); }
+      80%, 100% { opacity: 0; }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .pulsatingDot:before {
+      animation: pulseRing 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      background-color: #00BEFF;
+      border-radius: 45px;
+      content: '';
+      display: block;
+      height: 300%;
+      left: -100%;
+      position: absolute;
+      top: -100%;
+      width: 300%;
+    }
+  `;
+
   return (
     <>
       <div className="d-block mt-3">
-        <Button variant="secondary" onClick={handleShow}>
+        <style>{keyframesStyle}</style>
+        <Button
+          variant="secondary"
+          onClick={handleShow}
+          style={buttonContainerStyle}
+        >
+          <span style={pulsatingDotContainerStyle}>
+            <span className="pulsatingDot" style={pulsatingDotStyle}></span>
+          </span>
           AI Feedback
         </Button>
       </div>

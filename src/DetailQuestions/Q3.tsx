@@ -4,31 +4,33 @@ import { AnswerContext } from "../AnswerContext"; // Make sure the path is corre
 
 export function Q3(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [userInfo, setUserInfo] = useState<string>(userAnswers[3] || ""); // Adjusted to default to an empty string
+  const [data, setData] = useState<string>(userAnswers[2] || "");
 
   useEffect(() => {
-    setUserAnswers([...userAnswers.slice(0, 3), userInfo]);
-  }, [userInfo, setUserAnswers, userAnswers]);
+    setUserAnswers((prevAnswers: string[]) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[2] = data;
+      return updatedAnswers;
+    });
+  }, [data, setUserAnswers]);
 
-  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setUserInfo(event.target.value);
+  function updateData(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setData(event.target.value);
   }
 
   return (
     <div>
       <Form.Group controlId="preference">
-            <br></br>
-            <h3>
-              What kind of work environments would you thrive in the most?
-            </h3>
-            <br></br>
-            <Form.Control
-              as="textarea"
-              rows={5}
-              value={userInfo}
-              onChange={updateUserInfo}
-            />
-        </Form.Group>
-        </div>
+        <h3 className="py-5">
+          What kind of work environments would you thrive in the most?
+        </h3>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          value={data}
+          onChange={updateData}
+        />
+      </Form.Group>
+    </div>
   );
 }

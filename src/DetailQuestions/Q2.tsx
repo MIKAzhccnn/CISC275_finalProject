@@ -4,28 +4,31 @@ import { AnswerContext } from "../AnswerContext"; // Make sure the path is corre
 
 export function Q2(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [userInfo, setUserInfo] = useState<string>(userAnswers[2] || ""); // Assuming the third index for this answer
+  const [data, setData] = useState<string>(userAnswers[1] || "");
 
   useEffect(() => {
-    setUserAnswers([...userAnswers.slice(0, 2), userInfo]);
-  }, [userInfo, setUserAnswers, userAnswers]);
+    setUserAnswers((prevAnswers: string[]) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[1] = data;
+      return updatedAnswers;
+    });
+  }, [data, setUserAnswers]);
 
-  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setUserInfo(event.target.value);
+  function updateData(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setData(event.target.value);
   }
 
   return (
     <div>
-            <Form.Group controlId="work-schedule">
-            <br></br>
-            <h3>What is your ideal working schedule?</h3>
-            <br></br>
-            <Form.Control
-            as="textarea"
-            rows={5}
-            value={userInfo}
-            onChange={updateUserInfo} />
-            </Form.Group>
-        </div>
+      <Form.Group controlId="work-schedule">
+        <h3 className="py-5">What is your ideal working schedule?</h3>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          value={data}
+          onChange={updateData}
+        />
+      </Form.Group>
+    </div>
   );
 }
