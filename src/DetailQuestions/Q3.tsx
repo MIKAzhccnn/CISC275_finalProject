@@ -18,12 +18,9 @@ export function Q3(): JSX.Element {
     <div>
       <Form.Group controlId="preference">
             <br></br>
-            <br></br>
             <h3>
               What kind of work environments would you thrive in the most?
             </h3>
-            <br></br>
-            <br></br>
             <br></br>
             <Form.Control
               as="textarea"
