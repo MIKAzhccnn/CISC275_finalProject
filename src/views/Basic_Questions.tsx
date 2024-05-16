@@ -114,26 +114,22 @@ function Basic_Questions(): JSX.Element {
         </div>
 
         <br></br>
-        <div
+        <progress
+          value={progress}
+          max="100"
           style={{
             width: "100%",
-            backgroundColor: "#red",
+            height: "20px",
+            border: "none",
             borderRadius: "10px",
+            transition: "width 0.3s ease",
           }}
-        >
-          <progress
-            value={progress}
-            max="100"
-            style={{
-              width: "100%",
-              height: "20px",
-              border: "none",
-              borderRadius: "10px",
-              transition: "width 0.3s ease",
-            }}
-            className="progress-bar"
-          />
-        </div>
+          className="progress-bar" />
+          <style>
+            {`.progress-bar::-webkit-progress-value {background-color: #FFCC66 !important; border-radius: 10px; }
+              .progress-bar::-moz-progress-bar {background-color: #FFCC66 !important; border-radius: 10px; }`
+            }
+          </style>
         <br></br>
 
         <OpenAIOverlay
