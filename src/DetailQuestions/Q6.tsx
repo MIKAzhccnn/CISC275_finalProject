@@ -27,7 +27,7 @@ export function Q6(): JSX.Element {
         </h3>
         <Form.Control
           as="textarea"
-          rows={5}
+          rows={3}
           value={data}
           onChange={updateData}
         />
