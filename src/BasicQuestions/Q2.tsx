@@ -20,11 +20,23 @@ export function Q2(): JSX.Element {
   return (
     <div>
       <Form.Group controlId="userInput">
-        <h3 className="py-5">Do you have any short-term or long-term goals?</h3>
+        <br></br>
+        <h3>Which of these statements best describes you?</h3>
+        <br></br>
         <Form.Select value={data} onChange={updateData}>
           <option value="--">--</option>
-          <option value="short-term">Short-Term</option>
-          <option value="long-term">Long-Term</option>
+          <option value="I am detail-oriented and precise">
+            I am detail-oriented and precise
+          </option>
+          <option value="I am imaginative and original">
+            I am imaginative and original
+          </option>
+          <option value="I am empathetic and compassionate">
+            I am empathetic and compassionate
+          </option>
+          <option value="I am logical and methodical">
+            I am logical and methodical
+          </option>
         </Form.Select>
       </Form.Group>
     </div>

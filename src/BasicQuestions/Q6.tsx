@@ -1,39 +1,44 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import { AnswerContext } from "../AnswerContext";
 
-const seasons = ["Spring", "Summer", "Autumn", "Winter"];
-
 export function Q6(): JSX.Element {
+  const [data, setData] = useState<string>("");
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [selectSeason, setSelectSeason] = useState<string | null>(
-    userAnswers[5] || null,
-  ); // Initialize from context
 
-  function updateSeason(season: string) {
-    setSelectSeason(season); // Update local state
+  function updateData(event: React.ChangeEvent<HTMLSelectElement>) {
+    setData(event.target.value);
     setUserAnswers((prevAnswers: string[]) => {
-      // Update context
+      const answer = event.target.value;
       const updatedAnswers = [...prevAnswers];
-      updatedAnswers[5] = season; // Assume index 5 is correct for this answer
+      updatedAnswers[5] = answer;
       return updatedAnswers;
     });
+    console.log(userAnswers);
   }
 
   return (
     <div>
-      <h3 className="py-5">What is your favorite season?</h3>
-      {seasons.map((season) => (
-        <Form.Check
-          key={season} // Ensure to add a unique key for each item
-          inline
-          type="radio"
-          label={season}
-          name="season-button"
-          checked={selectSeason === season}
-          onChange={() => updateSeason(season)} // Use the consolidated update function
-        />
-      ))}
+      <Form.Group controlId="userInput">
+        <br></br>
+        <h3>How do you handle challenges?</h3>
+        <br></br>
+        <Form.Select value={data} onChange={updateData}>
+          <option value="--">--</option>
+          <option value="By analyzing all possible solutions">
+            By analyzing all possible solutions
+          </option>
+          <option value="By thinking creatively and outside the box">
+            By thinking creatively and outside the box
+          </option>
+          <option value="By discussing and collaborating with others">
+            By discussing and collaborating with others
+          </option>
+          <option value="By researching and experimenting">
+            By researching and experimenting
+          </option>
+        </Form.Select>
+      </Form.Group>
     </div>
   );
 }

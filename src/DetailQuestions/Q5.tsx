@@ -4,26 +4,31 @@ import { AnswerContext } from "../AnswerContext"; // Ensure the correct import p
 
 export function Q5(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [userInfo, setUserInfo] = useState<string>(userAnswers[5] || ""); // Initialize with context state
+  const [data, setData] = useState<string>(userAnswers[4] || "");
 
   useEffect(() => {
-    // Update context when userInfo changes
-    setUserAnswers([...userAnswers.slice(0, 5), userInfo]);
-  }, [userInfo, setUserAnswers, userAnswers]);
+    setUserAnswers((prevAnswers: string[]) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[4] = data;
+      return updatedAnswers;
+    });
+  }, [data, setUserAnswers]);
 
-  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setUserInfo(event.target.value);
+  function updateData(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setData(event.target.value);
   }
 
   return (
     <div>
       <Form.Group controlId="preference">
-        <h3>Do you prefer working independently or as part of a team?</h3>
+        <h3 className="py-5">
+          Do you prefer working independently or as part of a team?
+        </h3>
         <Form.Control
           as="textarea"
           rows={5}
-          value={userInfo}
-          onChange={updateUserInfo}
+          value={data}
+          onChange={updateData}
         />
       </Form.Group>
     </div>

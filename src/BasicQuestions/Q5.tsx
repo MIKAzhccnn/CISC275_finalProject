@@ -29,7 +29,7 @@ export function Q5(): JSX.Element {
           <option value="history">History</option>
           <option value="math">Math</option>
           <option value="art">Art</option>
-          <option value="physic">Physic</option>
+          <option value="physics">Physics</option>
           <option value="biology">Biology</option>
           <option value="chemistry">Chemistry</option>
           <option value="music">Music</option>

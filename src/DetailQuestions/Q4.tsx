@@ -2,39 +2,33 @@ import { useContext, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { AnswerContext } from "../AnswerContext"; // Verify the correct import path
 
-const skills = [
-  "attention to detail",
-  "creativity",
-  "analytical thinking",
-  "leadership",
-  "communication",
-];
-
 export function Q4(): JSX.Element {
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-  const [selectSkill, setSelectSkill] = useState<string>(userAnswers[4] || ""); // Adjusted to use string only, defaulting to an empty string
+  const [data, setData] = useState<string>(userAnswers[3] || "");
 
   useEffect(() => {
-    setUserAnswers([...userAnswers.slice(0, 4), selectSkill]);
-  }, [selectSkill, setUserAnswers, userAnswers]);
+    setUserAnswers((prevAnswers: string[]) => {
+      const updatedAnswers = [...prevAnswers];
+      updatedAnswers[3] = data;
+      return updatedAnswers;
+    });
+  }, [data, setUserAnswers]);
 
-  function handleSkillChange(skill: string) {
-    setSelectSkill(skill);
+  function updateData(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setData(event.target.value);
   }
 
   return (
     <div>
-      <h3>Which of the following skills do you possess and enjoy using?</h3>
-      {skills.map((skill) => (
-        <Form.Check
-          key={skill}
-          type="radio"
-          label={skill}
-          name="skill-button"
-          checked={selectSkill === skill}
-          onChange={() => handleSkillChange(skill)}
+      <Form.Group controlId="preference">
+        <h3 className="py-5">What skills do you possess and enjoy using?</h3>
+        <Form.Control
+          as="textarea"
+          rows={5}
+          value={data}
+          onChange={updateData}
         />
-      ))}
+      </Form.Group>
     </div>
   );
 }
