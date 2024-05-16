@@ -1,40 +1,34 @@
-import React, { useState, useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
-import { AnswerContext } from "../AnswerContext";
+import { AnswerContext } from "../AnswerContext"; // Verify the correct import path
 
-const skills = [
-    "attention to detail",
-    "creativity",
-    "analytical thinking",
-    "leadership",
-    "communication"
-];
+export function Q4(): JSX.Element {
+  const { userAnswers, setUserAnswers } = useContext(AnswerContext);
+  const [userInfo, setUserInfo] = useState<string>(userAnswers[4] || ""); // Adjusted to use string only, defaulting to an empty string
 
-export function Q4():JSX.Element {
-    const [selectSkill, setSelectSkill] = useState<string | null>(null);
-    const { userAnswers, setUserAnswers } = useContext(AnswerContext);
-    function updateSkill(event: React.ChangeEvent<HTMLInputElement>){
-        setSelectSkill(event.target.value)
-        
-    }
-    return (
-        <div>
+  useEffect(() => {
+    setUserAnswers([...userAnswers.slice(0, 4), userInfo]);
+  }, [userInfo, setUserAnswers, userAnswers]);
+
+  function updateUserInfo(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    setUserInfo(event.target.value);
+  }
+
+  return (
+    <div>
+      <Form.Group controlId="preference">
             <br></br>
+            <h3>
+              What skills do you possess and enjoy using?
+            </h3>
             <br></br>
-            Which of the following skills do you possess and enjoy using?
-            <br></br>
-            <br></br>
-            <br></br>
-            {skills.map((skill) => (
-                <Form.Check
-                    inline
-                    type="checkbox"
-                    label={skill}
-                    name="skill-button"
-                    checked={selectSkill === skill}
-                    onChange={()=>setSelectSkill(skill)}
-                />
-            ))}
-        </div>
-    );
+            <Form.Control
+              as="textarea"
+              rows={5}
+              value={userInfo}
+              onChange={updateUserInfo}
+            />
+      </Form.Group>
+    </div>
+  );
 }
