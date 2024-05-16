@@ -60,72 +60,61 @@ function Basic_Questions(): JSX.Element {
 
   return (
     <AnswerContext.Provider value={{ userAnswers, setUserAnswers }}>
+
       <div style={{ position: "relative", top: "100px" }} className="App">
-        <div className="question-container">
+
+        <div className='question-container'>
           <button
-            style={{ backgroundColor: "transparent" }}
-            className="left-button"
-            id="controls"
+            style={{ backgroundColor: 'transparent' }}
+            className='left-button'
+            id='controls'
             onClick={handlePrevClick}
             disabled={currentQuestion === 0}
           >
-            <img sizes="sm" src={leftArrow} alt="Prev" />
+            <img sizes='sm' src={leftArrow} alt="Prev" />
           </button>
 
-          <div className="slider">{questions[currentQuestion]}</div>
+          <div className='slider'>{questions[currentQuestion]}</div>
 
           <button
-            style={{ backgroundColor: "transparent" }}
-            className="right-button"
-            id="controls"
+            style={{ backgroundColor: 'transparent' }}
+            className='right-button'
+            id='controls'
             onClick={handleNextClick}
             disabled={currentQuestion === totalQuestions - 1}
           >
-            <img sizes="sm" src={rightArrow} alt="Next" />
+            <img sizes='sm' src={rightArrow} alt="Next" />
           </button>
           <br></br>
+
         </div>
 
         <br></br>
-        <div
+        <progress
+          value={progress}
+          max="100"
           style={{
             width: "100%",
-            backgroundColor: "#red",
+            height: "20px",
+            border: "none",
             borderRadius: "10px",
+            transition: "width 0.3s ease",
           }}
-        >
-          <progress
-            value={progress}
-            max="100"
-            style={{
-              width: "100%",
-              height: "20px",
-              border: "none",
-              borderRadius: "10px",
-              transition: "width 0.3s ease",
-            }}
-            className="progress-bar"
-          />
-        </div>
-        <br></br>
-
-        <OpenAIOverlay
-          basicQuestionSet={true}
-          currentQuestion={questionToEval}
-          openAIKey={keyData}
-        ></OpenAIOverlay>
-
-        <br></br>
-
-        <Button
-          onClick={handleNextClick}
-          disabled={currentQuestion < totalQuestions - 1}
-        >
-          Submit
-        </Button>
+          className="progress-bar" />
+      <style>
+        {`.progress-bar::-webkit-progress-value {background-color: #FFCC66 !important; border-radius: 10px; }
+        .progress-bar::-moz-progress-bar {background-color: #FFCC66 !important; border-radius: 10px; }`
+        }
+      </style>
+      
+      <br></br><OpenAIOverlay
+      basicQuestionSet={true}
+      currentQuestion={questionToEval}
+      openAIKey={keyData}
+       ></OpenAIOverlay><br></br><Button onClick={handleNextClick} disabled={currentQuestion < totalQuestions - 1}>Submit</Button>
         {showFireworks && <Complete />}
-      </div>
-    </AnswerContext.Provider>
+        </div>
+      </AnswerContext.Provider>
   );
 }
 
