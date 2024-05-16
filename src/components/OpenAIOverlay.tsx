@@ -59,6 +59,10 @@ export function OpenAIOverlay({
     }
   };
 
+  // function hydrateParse (entryResult: Card[]):Card[]{
+
+  // }
+
   //Set initial, Base Message
   function returnBaseMessage(qSetType: boolean): Message[] {
     if (qSetType) {
@@ -187,10 +191,65 @@ export function OpenAIOverlay({
   // run through initialization
   // show overlay with report result
 
+  const buttonContainerStyle: React.CSSProperties = {
+    position: "relative",
+    display: "inline-block",
+  };
+
+  const pulsatingDotContainerStyle: React.CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    marginRight: ".75em", // Add some margin space between dot and text
+    paddingBottom: "0.25em",
+  };
+
+  const pulsatingDotStyle: React.CSSProperties = {
+    width: "9px",
+    height: "9px",
+    backgroundColor: "#00BEFF",
+    borderRadius: "50%",
+    position: "relative",
+    animation:
+      "pulseDot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite",
+  };
+
+  const keyframesStyle = `
+    @keyframes pulseRing {
+      0% { transform: scale(.1); }
+      80%, 100% { opacity: 0; }
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .pulsatingDot:before {
+      animation: pulseRing 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      background-color: #00BEFF;
+      border-radius: 45px;
+      content: '';
+      display: block;
+      height: 300%;
+      left: -100%;
+      position: absolute;
+      top: -100%;
+      width: 300%;
+    }
+  `;
+
   return (
     <>
       <div className="d-block mt-3">
-        <Button variant="secondary" onClick={handleShow}>
+        <style>{keyframesStyle}</style>
+        <Button
+          variant="secondary"
+          onClick={handleShow}
+          style={buttonContainerStyle}
+        >
+          <span style={pulsatingDotContainerStyle}>
+            <span className="pulsatingDot" style={pulsatingDotStyle}></span>
+          </span>
           AI Feedback
         </Button>
       </div>
