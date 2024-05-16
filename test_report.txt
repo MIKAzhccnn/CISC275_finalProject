@@ -126,7 +126,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (115 ms)
+  ✕ renders learn react link (119 ms)
 
   ● renders learn react link
 
@@ -402,20 +402,20 @@ go away.[0m
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |    4.85 |    12.06 |    4.34 |    4.95 |                   
+All files              |    4.47 |     12.5 |    4.44 |    4.56 |                   
  src                   |    8.33 |        0 |       0 |    8.33 |                   
   AnswerContext.ts     |     100 |      100 |       0 |     100 |                   
   index.tsx            |       0 |      100 |     100 |       0 | 7-19              
   reportWebVitals.ts   |       0 |        0 |       0 |       0 | 3-10              
- src/BasicQuestions    |    1.23 |        0 |       0 |    1.23 |                   
+ src/BasicQuestions    |       0 |      100 |       0 |       0 |                   
   Q1.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q2.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q3.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q4.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q5.tsx               |       0 |      100 |       0 |       0 | 6-20              
-  Q6.tsx               |    9.09 |        0 |       0 |    9.09 | 8-34              
-  Q7.tsx               |       0 |      100 |       0 |       0 | 6-19              
-  Q8.tsx               |       0 |      100 |       0 |       0 | 6-18              
+  Q6.tsx               |       0 |      100 |       0 |       0 | 7-21              
+  Q7.tsx               |       0 |      100 |       0 |       0 | 6-20              
+  Q8.tsx               |       0 |      100 |       0 |       0 | 6-20              
  src/DetailQuestions   |       0 |        0 |       0 |       0 |                   
   Q1.tsx               |       0 |        0 |       0 |       0 | 6-43              
   Q2.tsx               |       0 |        0 |       0 |       0 | 6-17              
@@ -439,5 +439,5 @@ All files              |    4.85 |    12.06 |    4.34 |    4.95 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.71 s
+Time:        3.93 s
 Ran all test suites.
