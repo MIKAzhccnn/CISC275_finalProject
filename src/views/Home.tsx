@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import Basic from "../views/Basic_Questions"
 import Detail from "../views/Detail_Questions"
 import Result from "../views/Results"
+import "@fontsource/rubik";
 
 function Home() {
   const [currentPage, setCurrentPage] = useState<string>('HomePage');
