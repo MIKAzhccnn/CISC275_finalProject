@@ -8,7 +8,7 @@
         at div
         at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
         at div
-        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:12:49)
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
 
       4 |
       5 | test('renders learn react link', () => {
@@ -49,7 +49,7 @@
         at div
         at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
         at div
-        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:12:49)
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
 
       4 |
       5 | test('renders learn react link', () => {
@@ -90,7 +90,7 @@
         at div
         at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
         at div
-        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:12:49)
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
 
       4 |
       5 | test('renders learn react link', () => {
@@ -126,7 +126,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (120 ms)
+  ✕ renders learn react link (116 ms)
 
   ● renders learn react link
 
@@ -204,24 +204,13 @@ FAIL src/App.test.tsx
                 [36m</div>[39m
                 [36m<div[39m
                   [33mclass[39m=[32m"row"[39m
-                [36m>[39m
-                  [36m<button[39m
-                    [33mclass[39m=[32m"button btn1"[39m
-                  [36m>[39m
-                    [36m<span>[39m
-                      [0mDetailed Quiz[0m
-                    [36m</span>[39m
-                  [36m</button>[39m
-                [36m</div>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"row"[39m
                   [33mstyle[39m=[32m"border-bottom: 2px solid black;"[39m
                 [36m>[39m
                   [36m<button[39m
                     [33mclass[39m=[32m"button btn1"[39m
                   [36m>[39m
                     [36m<span>[39m
-                      [0mResult[0m
+                      [0mDetailed Quiz[0m
                     [36m</span>[39m
                   [36m</button>[39m
                 [36m</div>[39m
@@ -402,7 +391,7 @@ go away.[0m
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |    4.47 |     12.5 |    4.44 |    4.56 |                   
+All files              |    4.12 |     8.33 |    3.96 |    4.16 |                   
  src                   |    8.33 |        0 |       0 |    8.33 |                   
   AnswerContext.ts     |     100 |      100 |       0 |     100 |                   
   index.tsx            |       0 |      100 |     100 |       0 | 7-19              
@@ -413,31 +402,32 @@ All files              |    4.47 |     12.5 |    4.44 |    4.56 |
   Q3.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q4.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q5.tsx               |       0 |      100 |       0 |       0 | 6-20              
-  Q6.tsx               |       0 |      100 |       0 |       0 | 7-21              
+  Q6.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q7.tsx               |       0 |      100 |       0 |       0 | 6-20              
   Q8.tsx               |       0 |      100 |       0 |       0 | 6-20              
  src/DetailQuestions   |       0 |        0 |       0 |       0 |                   
   Q1.tsx               |       0 |        0 |       0 |       0 | 6-43              
-  Q2.tsx               |       0 |        0 |       0 |       0 | 6-17              
-  Q3.tsx               |       0 |        0 |       0 |       0 | 6-17              
-  Q4.tsx               |       0 |        0 |       0 |       0 | 6-17              
-  Q5.tsx               |       0 |        0 |       0 |       0 | 6-18              
-  Q6.tsx               |       0 |        0 |       0 |       0 | 6-18              
-  Q7.tsx               |       0 |        0 |       0 |       0 | 6-18              
- src/components        |    15.9 |    16.66 |   11.11 |    17.5 |                   
+  Q2.tsx               |       0 |        0 |       0 |       0 | 6-21              
+  Q3.tsx               |       0 |        0 |       0 |       0 | 6-21              
+  Q4.tsx               |       0 |        0 |       0 |       0 | 6-21              
+  Q5.tsx               |       0 |        0 |       0 |       0 | 6-21              
+  Q6.tsx               |       0 |        0 |       0 |       0 | 6-21              
+  Q7.tsx               |       0 |        0 |       0 |       0 | 6-21              
+ src/components        |   11.53 |    11.11 |    9.52 |      12 |                   
   Feedback.tsx         |       0 |      100 |       0 |       0 | 4                 
   Footer.tsx           |   53.84 |       50 |      40 |   53.84 | 9,16-26           
   Loader.tsx           |       0 |      100 |       0 |       0 | 4                 
-  OpenAIOverlay.tsx    |       0 |        0 |       0 |       0 | 23-165            
+  OpenAIOverlay.tsx    |    3.17 |        0 |       0 |    3.33 | 17-290            
   WebHeader.tsx        |       0 |        0 |       0 |       0 |                   
- src/views             |    4.76 |    20.83 |    9.52 |    4.83 |                   
-  Basic_Questions.tsx  |       0 |        0 |       0 |       0 | 19-61             
-  Detail_Questions.tsx |       0 |        0 |       0 |       0 | 18-52             
-  Home.tsx             |      25 |     62.5 |   18.18 |      25 | 31-83,106-121     
-  Results.tsx          |       0 |      100 |       0 |       0 | 10-27             
+  interfaces.tsx       |       0 |        0 |       0 |       0 |                   
+ src/views             |    3.75 |    11.76 |    8.69 |    3.75 |                   
+  Basic_Questions.tsx  |       0 |        0 |       0 |       0 | 21-86             
+  Detail_Questions.tsx |       0 |        0 |       0 |       0 | 20-76             
+  Home.tsx             |      30 |    66.66 |   22.22 |      30 | 46-113,173-189    
+  Results.tsx          |       0 |      100 |       0 |       0 | 10-21             
 -----------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.702 s
+Time:        3.785 s
 Ran all test suites.
