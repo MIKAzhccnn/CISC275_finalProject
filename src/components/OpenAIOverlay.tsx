@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Offcanvas from "react-bootstrap/Offcanvas";
-
 import OpenAI from "openai";
 
 interface Message {
