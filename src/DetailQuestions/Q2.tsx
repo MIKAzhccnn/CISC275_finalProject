@@ -18,10 +18,7 @@ export function Q2(): JSX.Element {
     <div>
             <Form.Group controlId="work-schedule">
             <br></br>
-            
             <h3>What is your ideal working schedule?</h3>
-            <br></br>
-            <br></br>
             <br></br>
             <Form.Control
             as="textarea"
