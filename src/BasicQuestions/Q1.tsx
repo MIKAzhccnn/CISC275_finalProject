@@ -6,7 +6,7 @@ export function Q1(): JSX.Element {
   const [data, setData] = useState<string>("");
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
 
-  function updateData(event: React.ChangeEvent<HTMLInputElement>) {
+  function updateData(event: React.ChangeEvent<HTMLSelectElement>) {
     setData(event.target.value);
     setUserAnswers((prevAnswers: string[]) => {
       const answer = event.target.value;
@@ -20,7 +20,7 @@ export function Q1(): JSX.Element {
   return (
     <div>
       <Form.Group controlId="userInput">
-        <h3 className="py-5">What do you like to do in your free time?</h3>
+        <h3 className="py-5">Which activity do you enjoy the most?</h3>
         <br></br>
                 <Form.Select value={data} onChange={updateData}>
                     <option value="--">--</option>
