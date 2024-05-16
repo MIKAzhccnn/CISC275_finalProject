@@ -8,7 +8,7 @@
         at div
         at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
         at div
-        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:12:49)
 
       4 |
       5 | test('renders learn react link', () => {
@@ -49,7 +49,7 @@
         at div
         at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
         at div
-        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:12:49)
 
       4 |
       5 | test('renders learn react link', () => {
@@ -90,7 +90,7 @@
         at div
         at /home/runner/work/CISC275_finalProject/CISC275_finalProject/node_modules/react-bootstrap/cjs/Container.js:14:3
         at div
-        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:11:49)
+        at Home (/home/runner/work/CISC275_finalProject/CISC275_finalProject/src/views/Home.tsx:12:49)
 
       4 |
       5 | test('renders learn react link', () => {
@@ -126,7 +126,7 @@
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (116 ms)
+  ✕ renders learn react link (118 ms)
 
   ● renders learn react link
 
@@ -402,7 +402,7 @@ go away.[0m
 -----------------------|---------|----------|---------|---------|-------------------
 File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------|---------|----------|---------|---------|-------------------
-All files              |    4.93 |    12.06 |    4.49 |    5.02 |                   
+All files              |    4.85 |    12.06 |    4.34 |    4.95 |                   
  src                   |    8.33 |        0 |       0 |    8.33 |                   
   AnswerContext.ts     |     100 |      100 |       0 |     100 |                   
   index.tsx            |       0 |      100 |     100 |       0 | 7-19              
@@ -424,19 +424,20 @@ All files              |    4.93 |    12.06 |    4.49 |    5.02 |
   Q5.tsx               |       0 |        0 |       0 |       0 | 6-18              
   Q6.tsx               |       0 |        0 |       0 |       0 | 6-18              
   Q7.tsx               |       0 |        0 |       0 |       0 | 6-18              
- src/components        |   16.27 |    16.66 |   11.76 |   17.94 |                   
+ src/components        |    15.9 |    16.66 |   11.11 |    17.5 |                   
   Feedback.tsx         |       0 |      100 |       0 |       0 | 4                 
   Footer.tsx           |   53.84 |       50 |      40 |   53.84 | 9,16-26           
-  OpenAIOverlay.tsx    |       0 |        0 |       0 |       0 | 24-166            
+  Loader.tsx           |       0 |      100 |       0 |       0 | 4                 
+  OpenAIOverlay.tsx    |       0 |        0 |       0 |       0 | 23-165            
   WebHeader.tsx        |       0 |        0 |       0 |       0 |                   
- src/views             |       5 |    20.83 |   10.52 |       5 |                   
+ src/views             |    4.76 |    20.83 |    9.52 |    4.83 |                   
   Basic_Questions.tsx  |       0 |        0 |       0 |       0 | 19-61             
   Detail_Questions.tsx |       0 |        0 |       0 |       0 | 18-52             
-  Home.tsx             |      25 |     62.5 |   18.18 |      25 | 30-82,105-120     
-  Results.tsx          |       0 |      100 |       0 |       0 | 10-20             
+  Home.tsx             |      25 |     62.5 |   18.18 |      25 | 31-83,106-121     
+  Results.tsx          |       0 |      100 |       0 |       0 | 10-27             
 -----------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.763 s
+Time:        3.688 s
 Ran all test suites.

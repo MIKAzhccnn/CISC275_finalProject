@@ -1,16 +1,28 @@
 {
   "files": {
-    "main.css": "/CISC275_finalProject/static/css/main.cb21ec10.css",
-    "main.js": "/CISC275_finalProject/static/js/main.7d7b89b9.js",
+    "main.css": "/CISC275_finalProject/static/css/main.8024722a.css",
+    "main.js": "/CISC275_finalProject/static/js/main.71761c35.js",
     "static/js/453.bad6c33a.chunk.js": "/CISC275_finalProject/static/js/453.bad6c33a.chunk.js",
     "static/media/FYCBackground.png": "/CISC275_finalProject/static/media/FYCBackground.cffc4e54ca74fd7169cf.png",
+    "static/media/rubik-latin-400-normal.woff": "/CISC275_finalProject/static/media/rubik-latin-400-normal.870dcb9ca975e7fa06a9.woff",
+    "static/media/rubik-arabic-400-normal.woff": "/CISC275_finalProject/static/media/rubik-arabic-400-normal.9b7e86b9f74ba1c2e5a6.woff",
+    "static/media/rubik-latin-400-normal.woff2": "/CISC275_finalProject/static/media/rubik-latin-400-normal.5903a23647de7c1c373f.woff2",
+    "static/media/rubik-arabic-400-normal.woff2": "/CISC275_finalProject/static/media/rubik-arabic-400-normal.fb7a9eb9da73dfe4012d.woff2",
+    "static/media/rubik-latin-ext-400-normal.woff": "/CISC275_finalProject/static/media/rubik-latin-ext-400-normal.b22669ae614939bed8f4.woff",
+    "static/media/rubik-latin-ext-400-normal.woff2": "/CISC275_finalProject/static/media/rubik-latin-ext-400-normal.128f0ade4a0f37464020.woff2",
+    "static/media/rubik-cyrillic-400-normal.woff": "/CISC275_finalProject/static/media/rubik-cyrillic-400-normal.6051558aea94e6ef53ed.woff",
+    "static/media/rubik-cyrillic-ext-400-normal.woff": "/CISC275_finalProject/static/media/rubik-cyrillic-ext-400-normal.42f32fa6be04a31cca47.woff",
+    "static/media/rubik-cyrillic-400-normal.woff2": "/CISC275_finalProject/static/media/rubik-cyrillic-400-normal.4518a3e43930ad13dfff.woff2",
+    "static/media/rubik-hebrew-400-normal.woff": "/CISC275_finalProject/static/media/rubik-hebrew-400-normal.dc3e1612254ef63af34e.woff",
+    "static/media/rubik-cyrillic-ext-400-normal.woff2": "/CISC275_finalProject/static/media/rubik-cyrillic-ext-400-normal.1382ac2e75fea62dd104.woff2",
+    "static/media/rubik-hebrew-400-normal.woff2": "/CISC275_finalProject/static/media/rubik-hebrew-400-normal.9f12218709f0b72dbf18.woff2",
     "index.html": "/CISC275_finalProject/index.html",
-    "main.cb21ec10.css.map": "/CISC275_finalProject/static/css/main.cb21ec10.css.map",
-    "main.7d7b89b9.js.map": "/CISC275_finalProject/static/js/main.7d7b89b9.js.map",
+    "main.8024722a.css.map": "/CISC275_finalProject/static/css/main.8024722a.css.map",
+    "main.71761c35.js.map": "/CISC275_finalProject/static/js/main.71761c35.js.map",
     "453.bad6c33a.chunk.js.map": "/CISC275_finalProject/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb21ec10.css",
-    "static/js/main.7d7b89b9.js"
+    "static/css/main.8024722a.css",
+    "static/js/main.71761c35.js"
   ]
 }
