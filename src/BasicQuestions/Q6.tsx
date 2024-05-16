@@ -1,51 +1,38 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Form } from "react-bootstrap";
 import { AnswerContext } from "../AnswerContext";
 
-const seasons = [
-    "Spring",
-    "Summer",
-    "Autumn",
-    "Winter",
-];
-
 export function Q6():JSX.Element {
-    const [selectSeason, setSelectSeason] = useState<string | null>(null);
+    const [data, setData] = useState<string>("");
     const { userAnswers, setUserAnswers } = useContext(AnswerContext);
 
-    function updateSeason(event: React.ChangeEvent<HTMLInputElement>) {
-        setSelectSeason(event.target.value);
-    }
-
-    function updateAnswer(event: React.ChangeEvent<HTMLInputElement>) {
+    function updateData(event: React.ChangeEvent<HTMLSelectElement>) {
+        setData(event.target.value);
         setUserAnswers((prevAnswers: string[]) => {
-          const answer = event.target.value;
-          const updatedAnswers = [...prevAnswers];
-          updatedAnswers[5] = answer;
-          return updatedAnswers;
-        });
-        console.log(userAnswers);
-      }
+            const answer = event.target.value;
+            const updatedAnswers = [...prevAnswers];
+            updatedAnswers[5] = answer;
+            return updatedAnswers;
+          });
+          console.log(userAnswers);
+    }
 
     return (
         <div>
-            <br></br>
-            <br></br>
-            What is your favorite season?
-            <br></br>
-            <br></br>
-            <br></br>
-            {seasons.map((season) => (
-                <Form.Check
-                    inline
-                    type="radio"
-                    label={season}
-                    name="season-button"
-                    checked={selectSeason === season}
-                    onChange={()=>setSelectSeason(season)}
-                />
-            ))}
+            <Form.Group controlId="userInput">
+                <br></br>
+                <h3>
+                How do you handle challenges?
+                </h3>
+                <br></br>
+                <Form.Select value={data} onChange={updateData}>
+                    <option value="--">--</option>
+                    <option value="By analyzing all possible solutions">By analyzing all possible solutions</option>
+                    <option value="By thinking creatively and outside the box">By thinking creatively and outside the box</option>
+                    <option value="By discussing and collaborating with others">By discussing and collaborating with others</option>
+                    <option value="By researching and experimenting">By researching and experimenting</option>
+                </Form.Select>
+            </Form.Group>
         </div>
     );
 }
