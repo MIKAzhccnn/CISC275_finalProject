@@ -18,12 +18,9 @@ export function Q4(): JSX.Element {
     <div>
       <Form.Group controlId="preference">
             <br></br>
-            <br></br>
             <h3>
               What skills do you possess and enjoy using?
             </h3>
-            <br></br>
-            <br></br>
             <br></br>
             <Form.Control
               as="textarea"
