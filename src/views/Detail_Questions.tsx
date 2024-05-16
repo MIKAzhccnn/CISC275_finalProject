@@ -9,7 +9,7 @@ import { Q7 } from "../DetailQuestions/Q7";
 import Complete from "../components/Feedback";
 import { OpenAIOverlay } from "../components/OpenAIOverlay";
 import { AnswerContext } from "../AnswerContext";
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import rightArrow from "../rightArrow.png";
 import leftArrow from "../leftArrow.png";
 import { Button } from "react-bootstrap";
@@ -20,6 +20,7 @@ function Detail_Questions(): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionToEval, setQuestionToEval] = useState("");
   const [showFireworks, setShowFireworks] = useState(false);
+  const [runReport, setRunReport] = useState(false);
   const [results, setResults] = useState<Card[]>([]);
   const questions = [<Q1 />, <Q2 />, <Q3 />, <Q4 />, <Q5 />, <Q6 />, <Q7 />];
   const totalQuestions = questions.length;
@@ -27,11 +28,11 @@ function Detail_Questions(): JSX.Element {
     Array(totalQuestions).fill(""),
   );
   const handleNextClick = () => {
-    Complete();
     setQuestionToEval(userAnswers[currentQuestion]);
     if (currentQuestion < totalQuestions - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
+      setRunReport(true);
       setShowFireworks(true);
     }
   };
@@ -42,6 +43,18 @@ function Detail_Questions(): JSX.Element {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
+
+  useLayoutEffect(() => {
+    // Your initialization logic here
+    setQuestionToEval("init");
+  }, []); // Empty dependency array ensures this runs only once
+
+  useLayoutEffect(() => {
+    // Your initialization logic here
+    if (runReport) {
+      setQuestionToEval("RUN REPORT");
+    }
+  }, [runReport]); // Empty dependency array ensures this runs only once
 
   const progress = ((currentQuestion + 1) / totalQuestions) * 100;
 

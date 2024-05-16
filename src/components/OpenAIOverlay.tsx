@@ -3,8 +3,31 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { Card } from "../components/interfaces";
+import JSON5 from "json5";
 
 import OpenAI from "openai";
+
+import { createApi } from "unsplash-js";
+
+const unsplash = createApi({
+  accessKey: "dT7cw2riuGM_E8hDOnZ4Xr2z_MgjupXfYgfRQbVDkhQ",
+});
+
+const fetchImage = async (query: string): Promise<string | undefined> => {
+  try {
+    const result = await unsplash.search.getPhotos({
+      query,
+      page: 1,
+      perPage: 1,
+      orientation: "portrait",
+    });
+    console.log(result.response?.results[0]);
+    return result.response?.results[0].urls.regular;
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    return "";
+  }
+};
 
 interface Message {
   role: "system" | "user" | "assistant";
@@ -42,26 +65,28 @@ export function OpenAIOverlay({
 
   //Attribution: Implemented with ChatGPT
   const parseCardString = (str: string): Card[] => {
-    // Remove newline characters
-    let validJsonString = str.replace(/\n/g, "");
-
-    // Replace single quotes with double quotes
-    validJsonString = validJsonString.replace(/'/g, '"');
-
-    // Ensure keys are quoted
-    validJsonString = validJsonString.replace(/([{,]\s*)(\w+)\s*:/g, '$1"$2":');
-
     try {
-      return JSON.parse(validJsonString);
+      return JSON5.parse(str);
     } catch (error) {
       console.error("Error parsing JSON string:", error);
       return [];
     }
   };
 
-  // function hydrateParse (entryResult: Card[]):Card[]{
+  async function hydrateParse(entryResult: Card[]): Promise<Card[]> {
+    const newCards = await Promise.all(
+      entryResult.map(async (card) => {
+        if (card.image === "") {
+          const newImage = await fetchImage(card.title);
+          console.log(newImage);
+          return { ...card, image: newImage };
+        }
+        return card;
+      }),
+    );
 
-  // }
+    return newCards;
+  }
 
   //Set initial, Base Message
   function returnBaseMessage(qSetType: boolean): Message[] {
@@ -94,7 +119,7 @@ export function OpenAIOverlay({
 
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
-            [{title: 'Career', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career2', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career3', info: 'a', image: 'https://picsum.photos/id/237/536/354'}]
+            [{title: "Career", info: "a", image: ""}, {title: "Career2", info: "a", image: ""}, {title: "Career3", info: "a", image: ""}]
 
             ONLY HAVE THE ARRAY IN YOUR OUTPUT AFTER "RUN REPORT", NOTHING ELSE
             `,
@@ -124,11 +149,11 @@ export function OpenAIOverlay({
                 image: string
             }
 
-            THE OUTPUT WILL BE COMPOSED OF A TSX ARRAY OF CARD WITH 5 POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
+            THE OUTPUT WILL BE COMPOSED OF A TSX ARRAY OF CARD WITH FIVE POSSIBLE CAREER OPTIONS, THE CAREER NAME IN TITLE, A SHORT DESCRIPTION OF WHY YOU THINK IT'S A GOOD FIT FOR THIS PERSON IN THE INFO FIELD, AND THE IMAGE FIELD SHOULD BE AN EMPTY STRING.
 
             HERE IS AN EXAMPLE OF THE EXPECTED FINAL OUTPUT:
 
-            [{title: 'Career', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career2', info: 'a', image: 'https://picsum.photos/id/237/536/354'}, {title: 'Career3', info: 'a', image: 'https://picsum.photos/id/237/536/354'}]
+            [{title: "Career", info: "a", image: ""}, {title: "Career2", info: "a", image: ""}, {title: "Career3", info: "a", image: ""}, {title: "Career4", info: "a", image: ""}, {title: "Career5", info: "a", image: ""}]
 
              ONLY HAVE THE ARRAY IN YOUR OUTPUT AFTER "RUN REPORT", NOTHING ELSE
             `,
@@ -174,7 +199,9 @@ export function OpenAIOverlay({
           setResponses((prevResponses) => [...prevResponses, gptRetVal]);
         } else {
           let parsedCard = parseCardString(gptRetVal);
-          results(parsedCard);
+          let hydratedCard = await hydrateParse(parsedCard);
+          console.log(hydratedCard);
+          results(hydratedCard);
         }
       }
 
