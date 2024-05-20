@@ -11,7 +11,7 @@ export function Q1(): JSX.Element {
     "Other Reasons",
   ];
 
-  const [data, setData] = useState<string>(userAnswers[1] || "");
+  const [data, setData] = useState<string>(userAnswers[0] || "");
   const [selectedReason, setSelectedReason] = useState<string>(
     userAnswers[0] || "",
   );

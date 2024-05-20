@@ -29,12 +29,17 @@ function Detail_Questions(): JSX.Element {
     Array(totalQuestions).fill(""),
   );
   const handleNextClick = () => {
-    setQuestionToEval(userAnswers[currentQuestion]);
-    if (currentQuestion < totalQuestions - 1) {
-      setCurrentQuestion(currentQuestion + 1);
+    const currentAnswer = userAnswers[currentQuestion];
+    if (currentAnswer === "" || currentAnswer === "--") {
+      alert("Please answer the question before proceeding.");
     } else {
-      setRunReport(true);
-      setShowFireworks(true);
+      setQuestionToEval(userAnswers[currentQuestion]);
+      if (currentQuestion < totalQuestions - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setRunReport(true);
+        setShowFireworks(true);
+      }
     }
   };
 
@@ -115,12 +120,12 @@ function Detail_Questions(): JSX.Element {
             borderRadius: "10px",
             transition: "width 0.3s ease",
           }}
-          className="progress-bar" />
-          <style>
-            {`.progress-bar::-webkit-progress-value {background-color: #FFCC66 !important; border-radius: 10px; }
-              .progress-bar::-moz-progress-bar {background-color: #FFCC66 !important; border-radius: 10px; }`
-            }
-          </style>
+          className="progress-bar"
+        />
+        <style>
+          {`.progress-bar::-webkit-progress-value {background-color: #FFCC66 !important; border-radius: 10px; }
+              .progress-bar::-moz-progress-bar {background-color: #FFCC66 !important; border-radius: 10px; }`}
+        </style>
         <br></br>
 
         <OpenAIOverlay
