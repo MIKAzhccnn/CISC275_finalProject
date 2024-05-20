@@ -32,6 +32,8 @@ function Detail_Questions(): JSX.Element {
     const currentAnswer = userAnswers[currentQuestion];
     if (currentAnswer === "" || currentAnswer === "--") {
       alert("Please answer the question before proceeding.");
+    } else if (keyData === "") {
+      alert("Please enter your OpenAI API.");
     } else {
       setQuestionToEval(userAnswers[currentQuestion]);
       if (currentQuestion < totalQuestions - 1) {

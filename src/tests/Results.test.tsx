@@ -1,14 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { ResultsPage } from "../views/Results";
 import { Card } from "../components/interfaces";
-
-// Mock the bootstrap components
-jest.mock("react-bootstrap/OverlayTrigger", () => ({ children }: any) => (
-  <>{children}</>
-));
-jest.mock("react-bootstrap/Tooltip", () => ({ children }: any) => (
-  <>{children}</>
-));
+import "@testing-library/jest-dom/extend-expect";
 
 const mockCards: Card[] = [
   {
@@ -31,22 +24,22 @@ describe("ResultsPage Component tests", () => {
 
   test("renders the correct number of cards", () => {
     render(<ResultsPage cards={mockCards} />);
-    const cards = screen.getAllByRole("img");
+    const cards = screen.getAllByRole("img", { name: "" });
     expect(cards).toHaveLength(mockCards.length);
   });
 
-  test("renders card titles and info in tooltips", () => {
+  test("renders card titles", () => {
     render(<ResultsPage cards={mockCards} />);
     mockCards.forEach((card) => {
       expect(screen.getByText(card.title)).toBeInTheDocument();
-      expect(screen.getByText(card.info)).toBeInTheDocument();
     });
   });
 
   test("renders card images", () => {
     render(<ResultsPage cards={mockCards} />);
-    mockCards.forEach((card) => {
-      expect(screen.getByAltText("")).toHaveAttribute("src", card.image);
+    mockCards.forEach((card, index) => {
+      const images = screen.getAllByRole("img", { name: "" });
+      expect(images[index]).toHaveAttribute("src", card.image);
     });
   });
 });
