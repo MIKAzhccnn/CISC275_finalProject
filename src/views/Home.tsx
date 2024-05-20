@@ -2,9 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row, Container } from "react-bootstrap";
 import { Footer } from "../components/Footer";
 import "../App.css";
-import React, { useState } from 'react';
-import Basic from "../views/Basic_Questions"
-import Detail from "../views/Detail_Questions"
+import { useState } from "react";
+import Basic from "../views/Basic_Questions";
+import Detail from "../views/Detail_Questions";
 import "@fontsource/rubik";
 
 function Home() {
@@ -135,9 +135,9 @@ function Home() {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="1"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="lucide lucide-lightbulb"
         >
           <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />

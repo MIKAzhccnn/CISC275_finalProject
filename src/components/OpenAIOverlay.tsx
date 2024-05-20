@@ -11,6 +11,7 @@ import { createApi } from "unsplash-js";
 
 const unsplash = createApi({
   accessKey: "dT7cw2riuGM_E8hDOnZ4Xr2z_MgjupXfYgfRQbVDkhQ",
+  //this is demo API key - limited to 50 requests per hour, that is, 16 Basic and 10 Detailed Quizes per hour
 });
 
 const fetchImage = async (query: string): Promise<string | undefined> => {
@@ -63,7 +64,7 @@ export function OpenAIOverlay({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //Attribution: Implemented with ChatGPT
+  //Attribution: Implemented with ChatGPT -> employs the JSON5 library to parse the JSON provided by GPT into a TS typed object
   const parseCardString = (str: string): Card[] => {
     try {
       return JSON5.parse(str);
@@ -214,6 +215,7 @@ export function OpenAIOverlay({
       }
     }
   }, [currentQuestion]); // eslint-disable-line react-hooks/exhaustive-deps
+  //escaped this lint rule since we only need submit OpenAI API request when the currentQuestion is updated, not necesarily any other dependencies.
 
   // run through initialization
   // show overlay with report result

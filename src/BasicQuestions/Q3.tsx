@@ -1,20 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { AnswerContext } from "../AnswerContext";
 
 export function Q3(): JSX.Element {
-  const [data, setData] = useState<string>("");
   const { userAnswers, setUserAnswers } = useContext(AnswerContext);
+  const [data, setData] = useState<string>(userAnswers[2] || "--");
+
+  useEffect(() => {
+    if (userAnswers[2]) {
+      setData(userAnswers[2]);
+    }
+  }, [userAnswers]);
 
   function updateData(event: React.ChangeEvent<HTMLSelectElement>) {
-    setData(event.target.value);
+    const answer = event.target.value;
+    setData(answer);
     setUserAnswers((prevAnswers: string[]) => {
-      const answer = event.target.value;
       const updatedAnswers = [...prevAnswers];
       updatedAnswers[2] = answer;
       return updatedAnswers;
     });
-    console.log(userAnswers);
   }
 
   return (
